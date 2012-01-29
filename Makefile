@@ -1,5 +1,5 @@
 #
-# Created by gmakemake
+# Created by gmakemake (Ubuntu Sep 14 2011) on Sun Jan 29 15:42:48 2012
 #
 
 #
@@ -45,40 +45,17 @@ CPP = $(CPP) $(CPPFLAGS)
 
 #
 # This header.mak file will set up all necessary options for compiling
-# and linking C and C++ programs which use OpenGL, GLUT, and/or SOIL.
-#
-# To use the GNU C or C++ compiler, you will need to uncomment one of
-# the following lines:
-#
-#   CC = gcc
-#   CCC = g++
-#   CXX = g++
-#
-
-#
-# Include file locations
-#
-GLGLUTINC = /opt/csw/include
-
-INCLUDE = -I$(GLGLUTINC)
-
-#
-# If you are working on a SPARC-based system (e.g., the compute server
-# 'queeg'), replace -lSOIL with -lSOIL-sparc in the LDLIBS macro.
-#
-GLGLUTLIB = /opt/csw/lib
-GLGLUTLIBDIRS = -L$(GLGLUTLIB)
-
-LIBDIRS = $(GLGLUTLIBDIRS)
-
-LDLIBS = -lglut -lGLU -lGL -lXmu -lXext -lX11 -lm
-
-#
-# Compilation and linking flags
+# and linking C and C++ programs which use OpenGL and/or GLUT on the
+# Ubuntu systems.
 #
 # If you want to take advantage of GDB's extra debugging features,
 # change "-g" in the CFLAGS and LIBFLAGS macro definitions to "-ggdb".
 #
+INCLUDE =
+LIBDIRS =
+
+LDLIBS = -lglut -lGLU -lGL -lXext -lX11 -lm
+
 CFLAGS = -g $(INCLUDE)
 CCFLAGS =  $(CFLAGS)
 CXXFLAGS = $(CFLAGS)
@@ -86,7 +63,6 @@ CXXFLAGS = $(CFLAGS)
 LIBFLAGS = -g $(LIBDIRS) $(LDLIBS)
 CLIBFLAGS = $(LIBFLAGS)
 CCLIBFLAGS = $(LIBFLAGS)
-
 
 ########## End of flags from header.mak
 
@@ -107,7 +83,7 @@ OBJFILES =	ball.o drawings.o plane.o
 all:	project4 
 
 project4:	project4.o $(OBJFILES)
-	$(CXX) $(CXXFLAGS) -o project4 project4.o $(OBJFILES) $(CCLIBFLAGS)
+	$(CXX) $(CXXFLAGS) -o EduardoRodrigues_BallPhysics_Linux project4.o $(OBJFILES) $(CCLIBFLAGS)
 
 #
 # Dependencies
@@ -128,7 +104,7 @@ archive.tgz:	$(SOURCEFILES) Makefile
 	tar cf - $(SOURCEFILES) Makefile | gzip > archive.tgz
 
 clean:
-	-/bin/rm $(OBJFILES) project4.o core 2> /dev/null
+	-/bin/rm -f $(OBJFILES) project4.o core
 
 realclean:        clean
-	-/bin/rm -rf project4 
+	-/bin/rm -f EduardoRodrigues_BallPhysics_Linux 
